@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a0a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>For You ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+    <div class="loader-heart">💖</div>
+    <p class="loader-text">Loading something special…</p>
+</div>
+
+<!-- Canvas for sparkle particles -->
+<canvas id="sparkle-canvas"></canvas>
+
+<!-- Background Music -->
+<audio id="bg-music" loop>
+    <source src="Nava_Manmadhudu_-_Emannavoo_Video_Anirudh_Dhanush_256KBPS.webm" type="audio/webm">
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Floating Hearts -->
+<div class="floating-hearts" id="floating-hearts">
+    <span>❤️</span><span>💖</span><span>💕</span><span>💗</span><span>💘</span>
+    <span>💓</span><span>💝</span><span>❤️</span><span>💕</span><span>💖</span>
+    <span>💗</span><span>💘</span><span>💓</span><span>💝</span><span>❤️</span>
+    <span>🤍</span><span>🩷</span><span>💖</span><span>✨</span><span>💫</span>
+</div>
+
+<!-- ===== SCREEN 1 — MAGICAL ENTRY ===== -->
+<div id="opening-screen" class="fullscreen-panel opening-bg">
+    <div class="sparkle-ring"></div>
+    <h1 class="glow-text typewriter" id="opening-title"></h1>
+    <p class="tagline fade-in-delay1">I made something special for you…</p>
+    <p class="tagline-small fade-in-delay2">Click below only if your heart is ready 😉</p>
+    <button class="btn-magic btn-glow fade-in-delay3" onclick="enterHeart()">
+        <span class="btn-sparkle">✨</span> I'm Ready <span class="btn-sparkle">✨</span>
+    </button>
+</div>
+
+<!-- ===== SCREEN 2 — COUNTDOWN ===== -->
+<div id="countdown-screen" class="fullscreen-panel countdown-bg" style="display:none;">
+    <div class="countdown-stars"></div>
+    <h2 class="glow-text">In <span id="count" class="countdown-big">10</span> seconds…</h2>
+    <p class="tagline">You'll know how much you mean to me.</p>
+    <div class="countdown-ring">
+        <svg viewBox="0 0 120 120">
+            <circle cx="60" cy="60" r="54" class="ring-bg"/>
+            <circle cx="60" cy="60" r="54" class="ring-progress" id="ring-progress"/>
+        </svg>
+        <span class="countdown-number" id="countdown-number">10</span>
+    </div>
+    <div class="countdown-emoji-trail" id="emoji-trail"></div>
+</div>
+
+<!-- Heart Burst Overlay -->
+<div id="heart-burst" class="heart-burst">
+    <div class="heart-burst-inner">
+        <span>❤️</span><span>💖</span><span>💕</span><span>💗</span><span>💘</span>
+        <span>💓</span><span>💝</span><span>❤️</span><span>💕</span><span>💖</span>
+        <span>🤍</span><span>✨</span>
+    </div>
+</div>
+
+<!-- ===== SCROLL SECTIONS ===== -->
+<div id="scroll-content" style="display:none;">
+
+    <!-- Sticky Navigation -->
+    <nav id="sticky-nav">
+        <a href="#gallery"><span class="nav-icon">📷</span> Memories</a>
+        <a href="#reasons"><span class="nav-icon">💞</span> Reasons</a>
+        <a href="#letter"><span class="nav-icon">✉️</span> Letter</a>
+        <a href="#future"><span class="nav-icon">♾️</span> Forever</a>
+        <a href="#proposal"><span class="nav-icon">💍</span> Question</a>
+    </nav>
+
+    <!-- ── PARALLAX DIVIDER ── -->
+    <div class="parallax-divider divider-1">
+        <p class="divider-text">Every love story is beautiful, but ours is my favorite.</p>
+    </div>
+
+    <!-- Memory Gallery -->
+    <section id="gallery" class="section reveal">
+        <h2 class="section-title">Our Memory Gallery 📷</h2>
+        <p class="section-subtitle">Little moments that changed everything.</p>
+        <div class="memory-grid">
+            <div class="memory-card">
+                <img src="images/photo44.jpg" alt="Memory 1">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">❤️</span>
+                    <p>This was the day I realized how special you are.</p>
+                </div>
+            </div>
+            <div class="memory-card">
+                <img src="images/photo33.jpg" alt="Memory 2">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">🤍</span>
+                    <p>This is the kind of moment I never want to forget.</p>
+                </div>
+            </div>
+            <div class="memory-card">
+                <img src="images/photo22.jpg" alt="Memory 3">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">💫</span>
+                    <p>This is the day I knew then that my life will be better with you.</p>
+                </div>
+            </div>
+            <div class="memory-card">
+                <img src="images/photo11.jpg" alt="Memory 4">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">🌟</span>
+                    <p>Every picture with you tells a story I want to relive.</p>
+                </div>
+            </div>
+            <div class="memory-card">
+                <img src="images/photo66.jpeg" alt="Memory 5">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">💖</span>
+                    <p>I smile every time I think about this moment with you.</p>
+                </div>
+            </div>
+            <div class="memory-card">
+                <img src="images/photo4.jpg" alt="Memory 6">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">✨</span>
+                    <p>A normal day that became unforgettable because of you.</p>
+                </div>
+            </div>
+            <div class="memory-card">
+                <img src="images/photo65.jpeg" alt="Memory 6">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">🌸</span>
+                    <p>You turned an ordinary day into my favorite memory.</p>
+                </div>
+            </div>
+            <!-- <div class="memory-card">
+                <img src="images/photo5.jpg" alt="Memory 7">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">🌸</span>
+                    <p>You turned an ordinary day into my favorite memory.</p>
+                </div>
+            </div> -->
+            <div class="memory-card">
+                <img src="images/photo7.JPG" alt="Memory 9">
+                <div class="memory-overlay">
+                    <span class="overlay-icon">🦋</span>
+                    <p>Butterflies — that's what you give me, every single time.</p>
+                </div>
+            </div>
+        </div>
+        <p class="hint">✨ Tap or hover each photo to read the memory ✨</p>
+    </section>
+
+    <!-- ── PARALLAX DIVIDER ── -->
+    <div class="parallax-divider divider-2">
+        <p class="divider-text">You are my today and all of my tomorrows.</p>
+    </div>
+
+    <!-- Reasons Why I Like You -->
+    <section id="reasons" class="section reveal">
+        <h2 class="section-title">Reasons I Like You 💞</h2>
+        <div class="reasons-container">
+            <div class="reason-card reveal-child">
+                <span class="reason-num">1</span>
+                <div><p>Your smile makes even the worst days feel lighter.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">2</span>
+                <div><p>The way you listen makes me feel truly seen.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">3</span>
+                <div><p>You push me to be a better version of myself.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">4</span>
+                <div><p>We can be silly, serious, and everything in between.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">5</span>
+                <div><p>With you, even silence feels comfortable and warm.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">6</span>
+                <div><p>You're the first person I want to tell good news to.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">7</span>
+                <div><p>Just hearing your voice can change my entire mood.</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">8</span>
+                <div><p>When you call me "Muddu" — I feel so good, it makes my whole day better. 🥰</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">9</span>
+                <div><p>I want to make you feel seen, take care of you, and need to see you live happily — always. 💛</p></div>
+            </div>
+            <div class="reason-card reveal-child">
+                <span class="reason-num">10</span>
+                <div><p>I want to be there in your lowest and happiest moments — in every part of your life. I want to be the person where you can rest your shoulder with peace… where you will find peace. 🕊️</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PARALLAX DIVIDER ── -->
+    <div class="parallax-divider divider-3">
+        <p class="divider-text">If I had a flower for every time you made me smile, I'd have an endless garden.</p>
+    </div>
+
+    <!-- Emotional Letter -->
+    <section id="letter" class="section reveal">
+        <h2 class="section-title">A Letter To You ✨</h2>
+        <div class="letter-card">
+            <div class="letter-stamp">💌</div>
+            <p class="letter-greeting">Dear Dev,</p>
+            <p>
+                I don't know the exact moment it happened. Maybe it was the way you laughed at something
+                small, or the way you remembered a detail I thought you'd forget. All I know is that
+                somewhere between our random chats and quiet moments, you became someone I never want to lose.
+            </p>
+            <p>
+                When I'm with you, I feel like a baby — safe, careless, and so happy that nothing else matters.
+                But at the same time, I want to be like a mom to you — someone who takes care of you,
+                worries about you, and makes sure you're okay even when you forget to check on yourself.
+            </p>
+            <p>
+                I know I may not be the perfect one. I have my flaws, my moods, my messy days.
+                But I promise you this — no one will ever try harder to make you feel loved than me.
+                What I lack in perfection, I make up for with how much I care.
+            </p>
+            <p>
+                You make ordinary days feel special, and tough days feel a little easier. I'm grateful for
+                every memory we've made and every one that's still waiting for us.
+            </p>
+            <p>
+                This little website is just my way of saying what my words sometimes can't:
+                <strong>you mean so much to me, Dev.</strong>
+            </p>
+            <p class="signature">With all my heart,<br><span class="cursive">Yours forever ❤️</span></p>
+        </div>
+    </section>
+
+    <!-- ── ROSE BOUQUET ANIMATION ── -->
+    <section class="rose-bouquet-section reveal">
+        <div class="bouquet-wrapper">
+            <!-- Bouquet ribbon -->
+            <div class="bouquet-ribbon"></div>
+            <div class="bouquet-ribbon bouquet-ribbon-2"></div>
+
+            <!-- Roses -->
+            <div class="rose rose-1">
+                <div class="rose-bloom">
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="rose-center"></div>
+                </div>
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+            </div>
+
+            <div class="rose rose-2">
+                <div class="rose-bloom">
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="rose-center"></div>
+                </div>
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+            </div>
+
+            <div class="rose rose-3">
+                <div class="rose-bloom">
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="rose-center"></div>
+                </div>
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+            </div>
+
+            <div class="rose rose-4">
+                <div class="rose-bloom">
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="rose-center"></div>
+                </div>
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+            </div>
+
+            <div class="rose rose-5">
+                <div class="rose-bloom">
+                    <div class="petal p1"></div>
+                    <div class="petal p2"></div>
+                    <div class="petal p3"></div>
+                    <div class="petal p4"></div>
+                    <div class="petal p5"></div>
+                    <div class="rose-center"></div>
+                </div>
+                <div class="stem"></div>
+                <div class="leaf leaf-left"></div>
+                <div class="leaf leaf-right"></div>
+            </div>
+
+            <!-- Floating petals -->
+            <div class="falling-petal fp1"></div>
+            <div class="falling-petal fp2"></div>
+            <div class="falling-petal fp3"></div>
+            <div class="falling-petal fp4"></div>
+            <div class="falling-petal fp5"></div>
+            <div class="falling-petal fp6"></div>
+            <div class="falling-petal fp7"></div>
+            <div class="falling-petal fp8"></div>
+        </div>
+        <p class="bouquet-text">🌹 A bouquet of roses, just for you 🌹</p>
+    </section>
+
+    <!-- Our Next Chapter -->
+    <section id="future" class="section reveal">
+        <h2 class="section-title">Next Year & Beyond ⏳</h2>
+        <p class="section-subtitle">No timeline is too long when it's with you.</p>
+        <div class="future-grid">
+            <div class="future-card reveal-child">
+                <div class="future-icon">🗓️</div>
+                <h3>Next Year</h3>
+                <p>More memories, more late-night talks, more inside jokes, more "remember when" moments that we'll smile about later.</p>
+            </div>
+            <div class="future-card reveal-child">
+                <div class="future-icon">♾️</div>
+                <h3>No Time Limit</h3>
+                <p>I'm not here just for a chapter in your story. I'm here for every page you'll let me be on.</p>
+            </div>
+            <div class="future-card reveal-child">
+                <div class="future-icon">🌍</div>
+                <h3>Anywhere With You</h3>
+                <p>Wherever life takes us, the only destination that matters is being together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PARALLAX DIVIDER ── -->
+    <div class="parallax-divider divider-1">
+        <p class="divider-text">And now… the real question.</p>
+    </div>
+
+    <!-- ===== THE BIG QUESTION (at the very end) ===== -->
+    <section id="proposal" class="section reveal">
+        <div class="proposal-wrapper">
+            <div class="proposal-heart-anim">💍</div>
+            <h1 class="glow-text proposal-title">Will You Be Mine?</h1>
+            <p class="proposal-sub">This is the moment…</p>
+            <div class="proposal-buttons">
+                <button id="yesBtn" class="btn-magic btn-yes btn-glow" onclick="sayYes()">YES 💖</button>
+                <button id="noBtn" class="btn-magic btn-no" onmouseover="moveNo()" ontouchstart="moveNo()">NO 🙄</button>
+            </div>
+            <p id="response" class="response-text"></p>
+            <div id="yes-confetti"></div>
+        </div>
+    </section>
+
+    <!-- ===== YES CELEBRATION OVERLAY ===== -->
+    <div id="celebration-overlay">
+        <canvas id="fireworks-canvas"></canvas>
+        <div class="celebration-content">
+            <div class="celebration-hearts-rain"></div>
+            <div class="celebration-ring">💍</div>
+            <h1 class="celebration-title">He Said Yes!</h1>
+            <p class="celebration-subtitle" id="celebration-typewriter"></p>
+            <div class="celebration-photo-frame">
+                <img src="images/photo44.jpg" alt="Us" class="celebration-photo">
+                <div class="frame-glow"></div>
+            </div>
+            <div class="celebration-date">
+                <span class="forever-badge">♾️ Forever Starts Now ♾️</span>
+            </div>
+            <div class="celebration-floating-emojis" id="cel-emojis"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-hearts">❤️ 💖 💕 💗 💘 💓 💝</div>
+        <p>Made with ❤️ just for you</p>
+        <p class="footer-small">© Forever Yours</p>
+    </footer>
+</div>
+
+<!-- Scroll to top button -->
+<button id="scroll-top-btn" aria-label="Scroll to top">↑</button>
+
+<!-- Toast notification -->
+<div id="toast" class="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
